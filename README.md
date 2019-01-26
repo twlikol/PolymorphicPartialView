@@ -1,5 +1,7 @@
 ﻿## Polymorphic Partial View for AspNetCore
 
+Testing in AspNetCore 2.2
+
 ### Configure Services
 ```cs
 public void ConfigureServices(IServiceCollection services)
