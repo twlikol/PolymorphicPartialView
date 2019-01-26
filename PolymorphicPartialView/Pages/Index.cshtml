@@ -1,0 +1,54 @@
+﻿@page
+@model PolymorphicPartialView.Pages.IndexModel
+@{
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PolymorphicPartialView</title>
+    <link type="text/css" rel="stylesheet" href="~/Styles/jquery.validate.unobtrusive.css" />
+    <script type="text/javascript" src="~/Scripts/jquery-3.2.1.js"></script>
+    <script type="text/javascript" src="~/Scripts/jquery.validate.js"></script>
+    <script type="text/javascript" src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+    <style type="text/css">
+        body {
+            font-family: Segoe UI, Tahoma, Arial, Verdana, Microsoft JhengHei;
+            background-color: #FFFFFF;
+            font-size: 18px;
+        }
+        input {
+            font-family: Segoe UI, Tahoma, Arial, Verdana, Microsoft JhengHei;
+            font-size: 18px;
+        }
+
+        .header {
+            padding: 0 0 5px 0;
+            border: 0 solid #CCCCCC;
+        }
+        .item {
+            padding: 0 0 15px 0;
+            border: 0 solid #CCCCCC;
+        }
+    </style>
+</head>
+<body>
+    <form method="post">
+        <div>
+            <div class="header">DisplayName:</div>
+            <div class="item"><input type="text" asp-for="Entity.DisplayName" /></div>
+        </div>
+        @for (int i = 0; i < Model.ExtendEntities.Count; i++)
+        {
+            ViewContext.ViewData.TemplateInfo.HtmlFieldPrefix = string.Format("ExtendEntities[{0}]", i);
+
+            @await Html.PartialAsync(Model.ExtendEntities[i].PartialView, Model.ExtendEntities[i]);
+        }
+        <div>
+            <input type="submit" value="Post" />
+        </div>
+    </form>
+</body>
+</html>

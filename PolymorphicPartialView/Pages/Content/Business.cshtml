@@ -1,0 +1,10 @@
+﻿@model PolymorphicPartialView.Models.UserBusinessModel
+
+<input type="hidden" asp-for="PartialView" />
+<div>
+    <div class="header">CostID:</div>
+    <div class="item">
+        <input type="text" asp-for="CostID" />
+        <span asp-validation-for="CostID"></span>
+    </div>
+</div>
